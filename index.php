@@ -84,6 +84,11 @@ if (!$zone) {
 $ami_id = get_metadata("http://169.254.169.254/latest/meta-data/ami-id", $token);
 if (!$ami_id) {
     echo "Failed to fetch AMI ID";
+	
+// Fetch Public IP
+$public_ip) = get_metadata("http://169.254.169.254/latest/meta-data/public-ipv4", $token);
+if (!$public_ip) {
+    echo "Failed to fetch Public IP";
 }
 ?>
 
@@ -140,9 +145,11 @@ if (!$ami_id) {
   <div class="container">
     <div class="content">
       <h1>Terramino</h1>
-      <p><span class="attribute-name">AMI ID:</span><code><?php echo $ami_id; ?></code></p>
+	  <p><span class="attribute-name">Public IP:</span><code><?php echo $public_ip; ?></code></p>
       <p><span class="attribute-name">Instance ID:</span><code><?php echo $instance_id; ?></code></p>
       <p><span class="attribute-name">Availability Zone:</span><code><?php echo $zone; ?></code></p>
+	  <p><span class="attribute-name">AMI ID:</span><code><?php echo $ami_id; ?></code></p>
+	  
       <p>Use left and right arrow keys to move blocks.<br />Use up arrow key to flip block.</p>
     </div>
     <div class="content">
